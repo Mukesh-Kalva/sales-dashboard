@@ -5,6 +5,7 @@ import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
+  // Swagger setup
   const config = new DocumentBuilder()
     .setTitle('Sales Dashboard API')
     .setDescription('API documentation for Sales Dashboard assessment')
@@ -14,8 +15,16 @@ async function bootstrap() {
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api/docs', app, document);
 
-  await app.listen(3001);
-  console.log('🚀 Backend running on http://localhost:3001');
-  console.log('📖 Swagger docs on http://localhost:3001/api/docs');
+  // ✅ Use dynamic PORT from environment (fallback to 3001 for local dev)
+  const port = process.env.PORT || 3001;
+
+  // ✅ Allow frontend domain
+  app.enableCors({
+    origin: process.env.CORS_ORIGIN || '*',
+  });
+
+  await app.listen(port);
+  console.log(`🚀 Backend running on http://localhost:${port}`);
+  console.log(`📖 Swagger docs on http://localhost:${port}/api/docs`);
 }
 bootstrap();
