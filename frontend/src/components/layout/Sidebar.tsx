@@ -1,27 +1,39 @@
-import { Drawer, List, ListItem, ListItemText, Toolbar } from '@mui/material';
-import Link from 'next/link';
+import React from "react";
+import Link from "next/link";
+import { Drawer, List, ListItem, ListItemButton, ListItemText, Toolbar } from "@mui/material";
 
-const drawerWidth = 240;
-
-export default function Sidebar() {
+const Sidebar: React.FC = () => {
   return (
     <Drawer
       variant="permanent"
       sx={{
-        width: drawerWidth,
+        width: 240,
         flexShrink: 0,
-        [`& .MuiDrawer-paper`]: { width: drawerWidth, boxSizing: 'border-box' },
+        [`& .MuiDrawer-paper`]: { width: 240, boxSizing: "border-box" },
       }}
     >
       <Toolbar />
       <List>
-        <ListItem button component={Link} href="/">
-          <ListItemText primary="Dashboard" />
+        <ListItem disablePadding>
+          <ListItemButton component={Link} href="/">
+            <ListItemText primary="Dashboard" />
+          </ListItemButton>
         </ListItem>
-        <ListItem button component={Link} href="/reports">
-          <ListItemText primary="Reports" />
+
+        <ListItem disablePadding>
+          <ListItemButton component={Link} href="/reports">
+            <ListItemText primary="Reports" />
+          </ListItemButton>
+        </ListItem>
+
+        <ListItem disablePadding>
+          <ListItemButton component={Link} href="/settings">
+            <ListItemText primary="Settings" />
+          </ListItemButton>
         </ListItem>
       </List>
     </Drawer>
   );
-}
+};
+
+export default Sidebar;
