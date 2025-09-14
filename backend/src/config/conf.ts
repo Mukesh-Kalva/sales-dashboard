@@ -1,10 +1,10 @@
 export default () => ({
-  port: parseInt(process.env.PORT || "3001", 10), // backend runs on 3001
+  port: parseInt(process.env.PORT, 10) || 3001,
   database: {
-    host: process.env.DB_HOST || "localhost",
-    port: parseInt(process.env.DB_PORT || "5432", 10),
-    username: process.env.DB_USER || "postgres",
-    password: process.env.DB_PASS || "postgres",
-    database: process.env.DB_NAME || "sales_dashboard", // ✅ must be "database"
+    host: process.env.DB_HOST,
+    port: parseInt(process.env.DB_PORT, 10) || 5432,
+    username: process.env.DB_USERNAME,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_NAME,
   },
 });

@@ -15,17 +15,20 @@ import { AppController } from './app.controller';
       inject: [ConfigService],
       useFactory: (config: ConfigService) => ({
         type: 'postgres',
-        host: config.get<string>('database.host'),
-        port: config.get<number>('database.port'),
-        username: config.get<string>('database.username'),
-        password: config.get<string>('database.password'),
-        database: config.get<string>('database.database'),
+        url:
+          process.env.DATABASE_URL ||
+          `postgresql://${config.get<string>('database.username')}:${config.get<string>(
+            'database.password',
+          )}@${config.get<string>('database.host')}:${config.get<number>(
+            'database.port',
+          )}/${config.get<string>('database.database')}`,
         autoLoadEntities: true,
-        synchronize: true,
+        synchronize: true, // dev only, turn off in prod
+        ssl: process.env.DATABASE_URL ? { rejectUnauthorized: false } : false, // SSL only for Render
       }),
     }),
     DashboardModule,
   ],
-  controllers: [AppController], // 👈 add this
+  controllers: [AppController],
 })
 export class AppModule {}
