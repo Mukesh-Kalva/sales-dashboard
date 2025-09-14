@@ -2,6 +2,7 @@
   "name": "backend",
   "version": "1.0.0",
   "scripts": {
+    "preinstall": "unset NODE_ENV",
     "start": "nest start",
     "start:dev": "nest start --watch",
     "start:debug": "nest start --debug --watch",
