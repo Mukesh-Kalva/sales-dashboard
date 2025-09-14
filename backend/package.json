@@ -19,6 +19,7 @@
     "@nestjs/platform-express": "^11.1.6",
     "@nestjs/swagger": "^11.2.0",
     "@nestjs/typeorm": "^11.0.0",
+    "@nestjs/cli": "^11.0.10",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.14.2",
     "dotenv": "^17.2.2",
@@ -28,7 +29,6 @@
     "typeorm": "^0.3.26"
   },
   "devDependencies": {
-    "@nestjs/cli": "^11.0.10",
     "@types/node": "^24.3.1",
     "ts-node": "^10.9.2",
     "typescript": "^5.9.2"
